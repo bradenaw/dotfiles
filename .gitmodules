@@ -1,0 +1,15 @@
+[submodule "plus/.vim/bundle/vim-markdown"]
+	path = plus/.vim/bundle/vim-markdown
+	url = https://github.com/tpope/vim-markdown
+[submodule "plus/.vim/bundle/vim-gitgutter"]
+	path = plus/.vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
+[submodule "plus/.vim/bundle/vim-go"]
+	path = plus/.vim/bundle/vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule "plus/.vim/bundle/vim-signature"]
+	path = plus/.vim/bundle/vim-signature
+	url = https://github.com/kshenoy/vim-signature.git
+[submodule "plus/.zsh/plugins/zsh-syntax-highlighting"]
+	path = plus/.zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
