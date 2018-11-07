@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+. ${DIR}/colors
+# . ${DIR}/git_prompt
+
+HOST=`hostname -s`
+
+# http://jonisalonen.com/2012/your-bash-prompt-needs-this/
+GLUE="\[\033[G\]"
+
+function __user_and_host {
+    USER_PRINTED=""
+    if [ $USER == "root" ]; then
+        USER_PRINTED="$REDF$USER"
+    else
+        USER_PRINTED="$BRIGHT_WHITEF$USER"
+    fi
+    HOST_PRINTED="$BRIGHT_WHITEF$HOST"
+    printf "$USER_PRINTED$BRIGHT_BLACKF@$HOST_PRINTED"
+}
+
+function __working_dir {
+    PWD=$(pwd)
+
+    # If path is subdirectory of home, replace home path with ~
+    HOME=$(cd ~ && pwd)
+    PWD=${PWD/#"$HOME"/"~"}
+    printf "${BRIGHT_WHITEF}${PWD}"
+}
+
+function __git_branch {
+    GIT_BRANCH=$(__git_ps1 "%s")
+    if [ -n "$GIT_BRANCH" ]; then
+        COLOR=$BLUEF
+        if [ -n "$(git status --porcelain)" ]; then
+            COLOR=$REDF
+        fi
+        printf " $COLOR$GIT_BRANCH"
+    fi
+    echo ""
+}
+
+function __prompt_command {
+    printf "\n$GLUEF$BACK_VIOLETF $RESETF$BRIGHT_BLACKF $(date +%T) $(__user_and_host) $(__working_dir)$(__git_branch)$BLACKF / \n"
+    PS1="$BACK_VIOLET $RESET $GREEN~> $RESET"
+}
+
+PROMPT_COMMAND=__prompt_command
