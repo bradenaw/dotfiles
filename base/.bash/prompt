@@ -42,8 +42,8 @@ function __git_branch {
 }
 
 function __prompt_command {
-    printf "\n$GLUEF$BACK_VIOLETF $RESETF$BRIGHT_BLACKF $(date +%T) $(__user_and_host) $(__working_dir)$(__git_branch)$BLACKF / \n"
-    PS1="$BACK_VIOLET $RESET $GREEN~> $RESET"
+    printf "\n$GLUEF$BACK_GREENF $RESETF$BRIGHT_BLACKF $(date +%T) $(__user_and_host) $(__working_dir)$(__git_branch)$BLACKF / \n"
+    PS1="$BACK_GREEN $RESET $GREEN~> $RESET"
 }
 
 PROMPT_COMMAND=__prompt_command

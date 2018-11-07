@@ -68,18 +68,18 @@ function __git_branch {
 function __prompt_command {
     local vi_mode_color="${fg_bold[black]}"
     if [[ "$KEYMAP" == "main" ]]; then
-        vi_mode_color="${fg_no_bold[green]}"
+        vi_mode_color="${fg_no_bold[blue]}"
     elif [[ "$KEYMAP" == "vicmd" ]]; then
         vi_mode_color="${fg_bold[black]}"
     fi
 
     echo
-    echo -n "%{$bg_bold[magenta]%} "
+    echo -n "%{$bg_bold[blue]%} "
     echo -n "%{$bg_no_bold[black]$fg_bold[black]%} $(date +%T)"
     echo -n " $(__user_and_host) $(__working_dir)$(__git_branch) %{$reset_color%}"
     echo
 
-    echo "%{$bg_bold[magenta]%} %{$reset_color$vi_mode_color%} ~> %{$reset_color%}"
+    echo "%{$bg_bold[blue]%} %{$reset_color$vi_mode_color%} ~> %{$reset_color%}"
 }
 
 PROMPT="$(__prompt_command)"
