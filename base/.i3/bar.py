@@ -20,14 +20,19 @@ class BarPart:
 # CPU
 class CpuPart(BarPart):
     def __init__(self):
-        self._mpstat = subprocess.Popen(['mpstat', '5'], stdout=subprocess.PIPE)
-        self._mpstat.stdout.readline()
+        try:
+            self._mpstat = subprocess.Popen(['mpstat', '5'], stdout=subprocess.PIPE)
+            self._mpstat.stdout.readline()
+        except OSError:
+            self._bricked = True
         self._last_value = 0
 
     def __mpstat_has_available(self):
         return len(select.select([self._mpstat.stdout], [], [], 0)[0]) > 0
 
     def __status(self):
+        if self._bricked:
+            return (0, True)
         last_line = None
         while self.__mpstat_has_available():
             last_line = self._mpstat.stdout.readline()
@@ -35,11 +40,11 @@ class CpuPart(BarPart):
             idle = float(re.search('all +' + ('[\.0-9]+ +' * 9) + '([\.0-9]+)', last_line).group(1)) / 100
             value = 1 - idle
             self._last_value = value
-            return value
-        return self._last_value
+            return (value, False)
+        return (self._last_value, False)
 
     def render(self, frame):
-        cpu_usage = self.__status()
+        cpu_usage, err = self.__status()
 
         bar_color = Colors.green
         if cpu_usage > 0.8:
@@ -47,13 +52,21 @@ class CpuPart(BarPart):
         elif cpu_usage > 0.5:
             bar_color = Colors.yellow
 
-        return [{
+        title_part = {
             'name': 'cpu:title',
             'full_text': 'CPU ',
             'color': Colors.gray,
             'separator': False,
             'separator_block_width': 0
-        }] + horizontal_bar(cpu_usage, bar_color = bar_color) + [{
+        }
+
+        if err:
+            return [title_part, {
+                'name': 'cpu:err',
+                'full_text': '?'
+            }]
+
+        return [title_part] + horizontal_bar(cpu_usage, bar_color = bar_color) + [{
             'name': 'cpu:value',
             'full_text': ' ' + str(int(cpu_usage * 100)).rjust(3) + '%'
         }]
