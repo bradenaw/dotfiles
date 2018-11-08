@@ -20,6 +20,7 @@ class BarPart:
 # CPU
 class CpuPart(BarPart):
     def __init__(self):
+        self._bricked = False
         try:
             self._mpstat = subprocess.Popen(['mpstat', '5'], stdout=subprocess.PIPE)
             self._mpstat.stdout.readline()

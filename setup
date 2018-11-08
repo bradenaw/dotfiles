@@ -2,17 +2,60 @@
 
 set -eu
 
+# Colors
+NULL=00
+NORMAL=00
+BRIGHT=01
+
+FG_BLACK=30
+FG_RED=31
+FG_GREEN=32
+FG_WHITE=37
+
+BEG="\033["
+END="m"
+RESET="$BEG${NULL}$END"
+
+RED="$BEG${NORMAL};${FG_RED}$END"
+GREEN="$BEG${NORMAL};${FG_GREEN}$END"
+WHITE="$BEG${NORMAL};${FG_WHITE}$END"
+BRIGHT_BLACK="$BEG${BRIGHT};${FG_BLACK}$END"
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+envs="$( find "$DIR" -mindepth 1 -maxdepth 1 -type d \
+    | grep -v "$DIR/local_" \
+    | grep -v "$DIR/.git" \
+    && echo "$DIR/local_$(hostname)" )"
 
-cd ~
-git clone https://github.com/svetlyak40wt/dotfiler .dotfiler
+function ensure_symlink {
+    link_target="$1"
+    link_name="$2"
+    if [ -s "$link_name" ]; then
+        current_target="$(realpath "$link_name")"
+        if [ "$current_target" == "$link_target" ]; then
+            echo -e "  ${BRIGHT_BLACK}EXISTING $link_name -> $link_target${RESET}"
+        else
+            echo -e "  ${RED}CONFLICT${RESET} $link_name (attempted $link_target, current $current_target)"
+        fi
+    elif [ -e "$HOME/$item" ]; then
+        echo -e "  ${RED}CONFLICT${RESET} $link_name"
+    else
+        ln -s "$env/$item" "$HOME/$item"
+        echo -e "  ${GREEN}CREATED${RESET}  $link_name -> $link_target"
+    fi
+}
 
-( find "$DIR" -mindepth 1 -maxdepth 1 -type d | grep -Ev "^local_" && "$DIR/local_$HOST" ) \
-| while read f; do
-    fname="$(basename "$f")"
-    ln -s "$DIR/$fname" ~/.dotfiles/$fname
+for env in $envs; do
+    echo -e "Environment ${WHITE}$(basename $env)${RESET}"
+    while read item; do
+        if [ -f "$env/$item" ]; then
+            ensure_symlink "$env/$item" "$HOME/$item"
+        elif [ -d "$env/$item" ]; then
+            mkdir -p "$HOME/$item"
+            while read subitem; do
+                ensure_symlink "$env/$item/$subitem" "$HOME/$item/$subitem"
+            done < <(ls -A "$env/$item")
+        fi
+    done < <(ls -A "$env")
 done
-
-.dotfiler/bin/dot update

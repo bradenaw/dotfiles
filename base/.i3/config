@@ -171,4 +171,7 @@ bar {
         status_command python ~/.i3/bar.py
         font pango:Fira Mono 10
 }
+
+exec --no-startup-id feh --bg-scale ~/Downloads/yosemite.jpg
 exec --no-startup-id nm-applet
+exec --no-startup-id xcompmgr -c -f -n -D 20 -I .35 -O .35
