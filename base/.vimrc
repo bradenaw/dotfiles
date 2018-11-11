@@ -50,6 +50,7 @@ if has('autocmd')
   "let g:indent_guides_guide_size = 1
 
   let g:go_fmt_fail_silently = 1
+  let g:rustfmt_autosave = 1
 
   augroup BgHighlight
     autocmd!

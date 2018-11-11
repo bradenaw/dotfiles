@@ -13,3 +13,6 @@
 [submodule "plus/.zsh/plugins/zsh-syntax-highlighting"]
 	path = plus/.zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "plus/.vim/bundle/rust.vim"]
+	path = plus/.vim/bundle/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
