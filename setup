@@ -38,10 +38,10 @@ function ensure_symlink {
         else
             echo -e "  ${RED}CONFLICT${RESET} $link_name (attempted $link_target, current $current_target)"
         fi
-    elif [ -e "$HOME/$item" ]; then
+    elif [ -e "$link_name" ]; then
         echo -e "  ${RED}CONFLICT${RESET} $link_name"
     else
-        ln -s "$env/$item" "$HOME/$item"
+        ln -s "$link_target" "$link_name"
         echo -e "  ${GREEN}CREATED${RESET}  $link_name -> $link_target"
     fi
 }
