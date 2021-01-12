@@ -62,3 +62,5 @@
 
 [diff "nodiff"]
     command = /bin/true
+[dbx]
+	messagedisplayversion = 1
