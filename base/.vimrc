@@ -145,14 +145,29 @@ let g:grabbedbufnr=1
 " 'yank' current buffer (save number)
 nmap <leader>by :let g:grabbedbufnr = bufnr('')<cr>
 " 'delete' current buffer (save number and closes)
-nmap <leader>bd <leader>by:q<cr>
+" nmap <leader>bd <leader>by:q<cr>
 " 'paste' buffer (open in current window)
 nmap <leader>bp :exe "buffer ".g:grabbedbufnr<cr>
 
 " \t opens new tab.
 nmap <leader>t :tabnew<CR>
 
-nmap <leader>bd :normal i ─ │ ┌ ┐ └ ┘ ├ ┤ ┬ ┴ ┼<ESC>
+source ~/.vim/custom/box_drawing.vim
+nmap <leader>bdg :normal i// hl ─   jk │   jl ┌   hj ┐   kl └   hk ┘   jkl ├   hjk ┤  hjl ┬   hkl ┴   hjkl ┼<ESC>
+nmap <leader>bdc :normal o// hl ─   jk │   jl ┌   hj ┐   kl └   hk ┘   jkl ├   hjk ┤  hjl ┬   hkl ┴   hjkl ┼<ENTER><ESC>20o//                                                                                                //<ESC>019k3l
+nmap <leader>bdhl :normal r─<ESC>
+nmap <leader>bdjk :normal r│<ESC>
+nmap <leader>bdjl :normal r┌<ESC>
+nmap <leader>bdhj :normal r┐<ESC>
+nmap <leader>bdkl :normal r└<ESC>
+nmap <leader>bdhk :normal r┘<ESC>
+nmap <leader>bdhk :normal r┘<ESC>
+nmap <leader>bdjkl :normal r├<ESC>
+nmap <leader>bdhjk :normal r┤<ESC>
+nmap <leader>bdhjl :normal r┬<ESC>
+nmap <leader>bdhkl :normal r┴<ESC>
+nmap <leader>bdhjkl :normal r┼<ESC>
+nmap <leader>bds :BoxDrawingStart<ENTER>
 
 " H and L navigate between tabs.
 nmap H :tabp<CR>
