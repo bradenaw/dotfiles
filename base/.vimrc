@@ -64,6 +64,7 @@ if has('autocmd')
   autocmd BufRead,BufNewFile *.bzl set filetype=python
   autocmd BufRead,BufNewFile BUILD set filetype=python
   autocmd BufRead,BufNewFile *.pyst set filetype=python
+  autocmd BufRead,BufNewFile *.pyst-include set filetype=python
 endif
 
 let g:tagbar_type_go = {
@@ -151,6 +152,8 @@ nmap <leader>bp :exe "buffer ".g:grabbedbufnr<cr>
 " \t opens new tab.
 nmap <leader>t :tabnew<CR>
 
+nmap <leader>bd :normal i ─ │ ┌ ┐ └ ┘ ├ ┤ ┬ ┴ ┼<ESC>
+
 " H and L navigate between tabs.
 nmap H :tabp<CR>
 nmap L :tabn<CR>
@@ -199,7 +202,9 @@ set splitbelow
 set splitright
 set updatetime=1200
 set nowrap
+set textwidth=100
 set wildignore+=*.class
+set formatoptions=tcql
 " Put swapfiles in a separate directory.
 set dir=~/tmp/swp//
 set listchars=tab:▸\ ,nbsp:?,conceal:?,precedes:←,extends:→
@@ -211,3 +216,37 @@ syntax on
 source ~/.vim/custom/tabline.vim
 source ~/.vim/custom/statusline.vim
 source ~/.vim/custom/colors.vim
+
+function! MakeLink()
+  let line_number = line('.')
+  let full_path = expand('%:p')
+
+  let repo = ""
+  let rel_path = ""
+  let repo_path = ""
+
+  if full_path =~ "^/home/bw/src/server/"
+    let repo = "SERVER"
+    let rel_path = substitute(full_path, "^/home/bw/src/server/", "", "")
+    let repo_path = "/home/bw/src/server"
+  elseif full_path =~ "^/home/bw/src/client/"
+    let repo = "CLIENT"
+    let rel_path = substitute(full_path, "^/home/bw/src/client/", "", "")
+    let repo_path = "/home/bw/src/client"
+  elseif full_path =~ "^/home/bw/src/public/golang/"
+    let rel_path = substitute(full_path, "^/home/bw/src/public/golang/", "", "")
+    let link = "https://godoc.pp.dropbox.com/" . rel_path . "#L" . line_number
+    call setreg("+", link)
+    echo link . " copied to clipboard"
+    return
+  else
+    echo "File is not in a repo"
+    return
+  endif
+  let rev = substitute(system("cd ". repo_path . "&& git rev-parse master"), '\n\+$', '', '')
+  " let link = "https://code.corp.dropbox.com/view/server/" . rel_path . "#L" . line_number
+  let link = "https://tails.corp.dropbox.com/source/" . repo . "/browse/master/" . rel_path . ";" . rev . "$" . line_number
+  call setreg("+", link)
+  echo link . " copied to clipboard"
+endfunction
+command! MakeLink call MakeLink()

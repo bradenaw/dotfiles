@@ -98,6 +98,9 @@ highlight pbString                ctermfg=Magenta
 
 " Go
 highlight goString                ctermfg=Magenta
+highlight goFormatSpecifier       ctermfg=DarkBlue
+highlight goBuiltins              ctermfg=LightBlue
+highlight goType                  ctermfg=DarkGreen
 
 " sh
 highlight shDoubleQuote           ctermfg=Magenta

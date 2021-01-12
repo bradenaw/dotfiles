@@ -115,8 +115,8 @@ class MemoryPart(BarPart):
 class VolumePart(BarPart):
     def __amixer_status(self):
         try:
-            sound_status = subprocess.check_output(['amixer', 'sget', 'Master'])
-            match = re.search('Playback [0-9]+ \\[([0-9]+)%\\] \\[(?:.+?)\\] \\[(.+?)\\]', sound_status)
+            sound_status = subprocess.check_output(['/usr/bin/amixer', '-D', 'pulse', 'sget', 'Master'])
+            match = re.search('Playback [0-9]+ \\[([0-9]+)%\\] \\[(.+?)\\]', sound_status)
             volume_percent = float(match.group(1)) / 100
             muted = match.group(2).find('off') >= 0
 
@@ -184,7 +184,7 @@ class VolumePart(BarPart):
 class BrightnessPart(BarPart):
     def __status(self):
         try:
-            backlight_status = subprocess.check_output(['xbacklight'])
+            backlight_status = subprocess.check_output(['/home/bw/bin/sbacklight'])
             brightness_percent = float(backlight_status) / 100
 
             return (brightness_percent, False)

@@ -25,7 +25,7 @@ font pango:Open Sans 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec konsole
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -121,7 +121,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # lock screen
 bindsym $mod+Escape exec "i3lock -d -c 000000"
-bindsym $mod+Shift+Escape exec "dbus-send --system --print-reply --dest=org.freedesktop.UPower /org/freedesktop/UPower org.freedesktop.UPower.Suspend"
+bindsym $mod+Shift+Escape exec "systemctl suspend"
 
 bindsym $mod+y border toggle
 
@@ -131,12 +131,13 @@ bindsym $mod+i exec "i3-input"
 bindsym XF86AudioLowerVolume exec "/usr/bin/amixer -D pulse -q sset Master '5%-'"
 bindsym XF86AudioRaiseVolume exec "/usr/bin/amixer -D pulse -q sset Master '5%+' unmute"
 bindsym XF86AudioMute exec "/usr/bin/amixer -D pulse -q sset Master '0+' toggle"
-bindsym XF86MonBrightnessDown exec "xbacklight -10%"
-bindsym XF86MonBrightnessUp exec "xbacklight +10%"
+bindsym XF86MonBrightnessDown exec "/home/bw/bin/sbacklight down 10"
+bindsym XF86MonBrightnessUp exec "/home/bw/bin/sbacklight up 10"
 
 # screenshots
 bindsym $mod+Print exec "/usr/bin/gnome-screenshot"
 bindsym $mod+Shift+Print exec "/usr/bin/gnome-screenshot --area --interactive"
+bindsym $mod+Shift+XF86Eject exec "/usr/bin/gnome-screenshot --area --interactive"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -170,8 +171,13 @@ bar {
         #status_command i3status
         status_command python ~/.i3/bar.py
         font pango:Fira Mono 10
+        tray_output primary
 }
 
-exec --no-startup-id feh --bg-scale ~/Downloads/yosemite.jpg
+bindsym $mod+Shift+F1 exec "/home/bw/src/hacks/bw/tools/dock.sh"
+bindsym $mod+Shift+F2 exec "/home/bw/src/hacks/bw/tools/undock.sh"
+bindsym $mod+Shift+F3 exec "/home/bw/bin/new_wallpaper"
+
+exec --no-startup-id /home/bw/bin/new_wallpaper
 exec --no-startup-id nm-applet
-exec --no-startup-id xcompmgr -c -f -n -D 20 -I .35 -O .35
+exec --no-startup-id compton --daemon --shadow --fading --fade-delta 20 --fade-in-step .35 --fade-out-step .35 --config /home/bw/.compton.conf

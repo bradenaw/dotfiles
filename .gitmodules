@@ -16,3 +16,6 @@
 [submodule "plus/.vim/bundle/rust.vim"]
 	path = plus/.vim/bundle/rust.vim
 	url = https://github.com/rust-lang/rust.vim.git
+[submodule "plus/.vim/bundle/YouCompleteMe"]
+	path = plus/.vim/bundle/YouCompleteMe
+	url = https://github.com/ycm-core/YouCompleteMe
