@@ -119,3 +119,4 @@ fi
 while read src; do
     . "$src"
 done < <(find ~/.bash/ -mindepth 1)
+. "$HOME/.cargo/env"

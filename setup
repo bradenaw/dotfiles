@@ -31,15 +31,15 @@ envs="$( find "$DIR" -mindepth 1 -maxdepth 1 -type d \
 function ensure_symlink {
     link_target="$1"
     link_name="$2"
-    if [ -s "$link_name" ]; then
-        current_target="$(realpath "$link_name")"
+    if [ -L "$link_name" ]; then
+        current_target="$(readlink "$link_name")"
         if [ "$current_target" == "$link_target" ]; then
             echo -e "  ${BRIGHT_BLACK}EXISTING $link_name -> $link_target${RESET}"
         else
             echo -e "  ${RED}CONFLICT${RESET} $link_name (attempted $link_target, current $current_target)"
         fi
     elif [ -e "$link_name" ]; then
-        echo -e "  ${RED}CONFLICT${RESET} $link_name"
+        echo -e "  ${RED}CONFLICT${RESET} $link_name (not a symlink)"
     else
         ln -s "$link_target" "$link_name"
         echo -e "  ${GREEN}CREATED${RESET}  $link_name -> $link_target"
