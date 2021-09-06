@@ -52,11 +52,11 @@ function slice() {
 function colortest() {
   bgcolors=( 40 100 41 101 42 102 43 103 44 104 45 105 46 106 47 107 49 )
   fgcolors=( 30 90 31 91 32 92 33 93 34 94 35 95 36 96 37 97 39 )
-  colornames=( "-BLK" "+BLK" "-RED" "+RED" "-GRN" "+GRN" "-YEL" "+YEL" "-BLU" "+BLU" "-MAG" "+MAG" "-CYN" "+CYN" "-WHT" "+WHT" " DEF" )
-  for j in `seq 0 $(expr ${#bgcolors[@]} - 1)`; do
-    printf "\e[0;${fgcolors[j]}m"" ${colornames[j]} "
-    for i in `seq 0 $(expr ${#fgcolors[@]} - 1)`; do
-      printf "\e[0;${fgcolors[i]};${bgcolors[j]}m"" ${colornames[i]} "
+  colornames=( "k" "K" "r" "R" "g" "G" "y" "Y" "b" "B" "m" "M" "c" "C" "w" "W" "x" )
+  for j in `seq 1 $(expr ${#bgcolors[@]})`; do
+    printf "\e[0;${fgcolors[j]}m${colornames[j]} "
+    for i in `seq 1 $(expr ${#fgcolors[@]})`; do
+      printf "\e[0;${fgcolors[i]};${bgcolors[j]}m ${colornames[i]} "
     done;
     printf "\e[0m\n"
   done
