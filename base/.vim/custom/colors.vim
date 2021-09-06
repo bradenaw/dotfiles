@@ -133,10 +133,10 @@ highlight markdownCodeDelimiter   ctermfg=DarkBlue
 highlight markdownLinkText        ctermfg=LightCyan
 highlight markdownUrl             ctermfg=DarkCyan
 
-highlight DiffAdd                 ctermfg=Gray        ctermbg=DarkGreen   cterm=None
-highlight DiffDelete              ctermfg=Gray        ctermbg=DarkRed     cterm=None
+highlight DiffAdd                 ctermfg=White       ctermbg=DarkGreen   cterm=None
+highlight DiffDelete              ctermfg=White       ctermbg=DarkRed     cterm=None
 highlight DiffChange              ctermfg=DarkGray    ctermbg=Yellow      cterm=None
-highlight DiffText                ctermfg=Gray        ctermbg=DarkGreen   cterm=None
+highlight DiffText                ctermfg=White       ctermbg=DarkGreen   cterm=None
 
 highlight trailingWhitespace                          ctermbg=DarkRed
 highlight ExtraWhitespace                             ctermbg=DarkRed
