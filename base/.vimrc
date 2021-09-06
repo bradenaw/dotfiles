@@ -22,6 +22,7 @@ if has('autocmd')
   " turn filetype back on after calling pathogen
   filetype on
   filetype plugin on
+  set nowrap
 
   " set filetypes for a given extension
   au BufRead,BufNewFile *.R set ft=R
@@ -30,6 +31,8 @@ if has('autocmd')
   " local settings for specific filetypes
   au FileType make,snippet setlocal ts=8 sts=8 sw=8 noexpandtab
   au FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
+  au FileType javascript,typescript setlocal ts=2 sts=2 sw=2 expandtab
+  au FileType markdown set wrap linebreak
 
   " Go to last viewed tab
   let g:lasttab = 1
@@ -169,6 +172,8 @@ nmap <leader>bdhkl :normal r┴<ESC>
 nmap <leader>bdhjkl :normal r┼<ESC>
 nmap <leader>bds :BoxDrawingStart<ENTER>
 
+nmap <leader>mc :normal /\(<<<<<<<\\|\|\|\|\|\|\|\|\\|=======\\|>>>>>>>\)<ENTER>
+
 " H and L navigate between tabs.
 nmap H :tabp<CR>
 nmap L :tabn<CR>
@@ -190,6 +195,8 @@ nnoremap * *N
 
 nmap <leader>ll :LineLength 100<cr>
 nmap <leader>ls :LineLength 80<cr>
+
+nmap gd <Plug>(coc-definition)
 
 " so typing comments doesn't has a dumb
 inoremap # X#
@@ -219,7 +226,7 @@ set updatetime=1200
 set nowrap
 set textwidth=100
 set wildignore+=*.class
-set formatoptions=tcql
+set formatoptions=tcqlro
 " Put swapfiles in a separate directory.
 set dir=~/tmp/swp//
 set listchars=tab:▸\ ,nbsp:?,conceal:?,precedes:←,extends:→
@@ -236,20 +243,16 @@ function! MakeLink()
   let line_number = line('.')
   let full_path = expand('%:p')
 
-  let repo = ""
   let rel_path = ""
   let repo_path = ""
+  let repo = ""
 
-  if full_path =~ "^/home/bw/src/server/"
-    let repo = "SERVER"
-    let rel_path = substitute(full_path, "^/home/bw/src/server/", "", "")
-    let repo_path = "/home/bw/src/server"
-  elseif full_path =~ "^/home/bw/src/client/"
-    let repo = "CLIENT"
-    let rel_path = substitute(full_path, "^/home/bw/src/client/", "", "")
-    let repo_path = "/home/bw/src/client"
-  elseif full_path =~ "^/home/bw/src/public/golang/"
-    let rel_path = substitute(full_path, "^/home/bw/src/public/golang/", "", "")
+  if full_path =~ "^/Users/bw/src/grammar/"
+    let rel_path = substitute(full_path, "^/Users/bw/src/grammar/", "", "")
+    let repo_path = "/Users/bw/src/grammar"
+    let repo = "grammar"
+  elseif full_path =~ "^/Users/bw/src/public/golang/"
+    let rel_path = substitute(full_path, "^/Users/bw/src/public/golang/", "", "")
     let link = "https://godoc.pp.dropbox.com/" . rel_path . "#L" . line_number
     call setreg("+", link)
     echo link . " copied to clipboard"
@@ -259,9 +262,16 @@ function! MakeLink()
     return
   endif
   let rev = substitute(system("cd ". repo_path . "&& git rev-parse master"), '\n\+$', '', '')
-  " let link = "https://code.corp.dropbox.com/view/server/" . rel_path . "#L" . line_number
-  let link = "https://tails.corp.dropbox.com/source/" . repo . "/browse/master/" . rel_path . ";" . rev . "$" . line_number
+  let link = "https://github.com/zerowatt-io/" . repo . "/blob/" . rev . "/" . rel_path . "#L" . line_number
   call setreg("+", link)
   echo link . " copied to clipboard"
 endfunction
 command! MakeLink call MakeLink()
+
+
+function! SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc

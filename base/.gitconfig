@@ -1,29 +1,4 @@
 [alias]
-    a  = add
-    aa = "add --all"
-    b  = branch
-    d  = diff
-    s  = "status --ignore-submodules"
-    p  = pull
-    o  = push
-    m  = "commit -m"
-    ma = "commit -am"
-    l  = "log --pretty=oneline"
-    t  = "log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'" # t is for tracks
-    tracks = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
-    w  = whatchanged
-    cl = clone
-    c  = checkout
-    ss = "stash save"
-    sa = "stash apply"
-    switch = !legit switch \"$@\"
-    branches = !legit branches
-    sprout = !legit sprout \"$@\"
-    unpublish = !legit unpublish \"$@\"
-    harvest = !legit harvest \"$@\"
-    sync = !legit sync \"$@\"
-    publish = !legit publish \"$@\"
-    graft = !legit graft \"$@\"
     one = "log --pretty=format:'%C(yellow)%h  %<(14)%Cred%cd %<(20)%Cblue%an%Cgreen%d %Creset%s' --date=short"
 
 [branch "master"]
@@ -62,5 +37,3 @@
 
 [diff "nodiff"]
     command = /bin/true
-[dbx]
-	messagedisplayversion = 1
