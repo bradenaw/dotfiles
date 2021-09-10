@@ -172,7 +172,11 @@ nmap <leader>bdhkl :normal r┴<ESC>
 nmap <leader>bdhjkl :normal r┼<ESC>
 nmap <leader>bds :BoxDrawingStart<ENTER>
 
-nmap <leader>mc :normal /\(<<<<<<<\\|\|\|\|\|\|\|\|\\|=======\\|>>>>>>>\)<ENTER>
+nmap <leader>mc /\(<<<<<<<\\|\|\|\|\|\|\|\|\\|=======\\|>>>>>>>\)<ENTER>
+
+nmap <leader>ch :call CocAction('doHover')<ENTER>
+nmap <leader>ca :CocAction<ENTER>
+nmap gd <Plug>(coc-definition)
 
 " H and L navigate between tabs.
 nmap H :tabp<CR>
@@ -196,7 +200,7 @@ nnoremap * *N
 nmap <leader>ll :LineLength 100<cr>
 nmap <leader>ls :LineLength 80<cr>
 
-nmap gd <Plug>(coc-definition)
+inoremap <expr> <tab> (pumvisible() ? ("\<C-n>\<C-y>") : ("\<tab>"))
 
 " so typing comments doesn't has a dumb
 inoremap # X#
@@ -247,10 +251,10 @@ function! MakeLink()
   let repo_path = ""
   let repo = ""
 
-  if full_path =~ "^/Users/bw/src/grammar/"
-    let rel_path = substitute(full_path, "^/Users/bw/src/grammar/", "", "")
-    let repo_path = "/Users/bw/src/grammar"
-    let repo = "grammar"
+  if full_path =~ "^/Users/bw/src/convex/"
+    let rel_path = substitute(full_path, "^/Users/bw/src/convex/", "", "")
+    let repo_path = "/Users/bw/src/convex"
+    let repo = "convex"
   elseif full_path =~ "^/Users/bw/src/public/golang/"
     let rel_path = substitute(full_path, "^/Users/bw/src/public/golang/", "", "")
     let link = "https://godoc.pp.dropbox.com/" . rel_path . "#L" . line_number
@@ -262,7 +266,7 @@ function! MakeLink()
     return
   endif
   let rev = substitute(system("cd ". repo_path . "&& git rev-parse master"), '\n\+$', '', '')
-  let link = "https://github.com/zerowatt-io/" . repo . "/blob/" . rev . "/" . rel_path . "#L" . line_number
+  let link = "https://github.com/get-convex/" . repo . "/blob/" . rev . "/" . rel_path . "#L" . line_number
   call setreg("+", link)
   echo link . " copied to clipboard"
 endfunction

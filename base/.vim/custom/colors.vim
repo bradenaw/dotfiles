@@ -31,7 +31,7 @@ highlight Comment                 ctermfg=DarkCyan                        cterm=
 highlight Operator                ctermfg=DarkGray
 highlight Statement               ctermfg=Brown
 highlight Type                    ctermfg=DarkGreen
-highlight Pmenu                   ctermfg=None        ctermbg=Black
+highlight Pmenu                   ctermfg=None        ctermbg=Black       cterm=None
 
 " Java
 highlight javaCommentTitle        ctermfg=DarkBlue    ctermbg=None        cterm=Reverse

@@ -1,10 +1,10 @@
 function! StatusLineMode(mode)
   let cmode=mode()
   if cmode == 'v' || cmode == 'V'
-    highlight StatusLineMode ctermfg=Gray ctermbg=DarkBlue
+    highlight StatusLineMode ctermfg=White ctermbg=DarkBlue
     return 'Visual'
   elseif cmode == 'R'
-    highlight StatusLineMode ctermfg=Yellow ctermbg=Brown
+    highlight StatusLineMode ctermfg=Gray ctermbg=White cterm=Reverse
     return 'Replace'
   elseif cmode == 'i'
     highlight StatusLineMode ctermfg=LightGreen ctermbg=DarkGreen
