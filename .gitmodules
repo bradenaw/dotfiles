@@ -16,18 +16,9 @@
 [submodule "plus/.vim/bundle/rust.vim"]
 	path = plus/.vim/bundle/rust.vim
 	url = https://github.com/rust-lang/rust.vim.git
-[submodule "plus/.vim/bundle/YouCompleteMe"]
-	path = plus/.vim/bundle/YouCompleteMe
-	url = https://github.com/ycm-core/YouCompleteMe
-[submodule "plus/.vim/bundle/vim-lsp"]
-	path = plus/.vim/bundle/vim-lsp
-	url = https://github.com/prabirshrestha/vim-lsp.git
-[submodule "plus/.vim/bundle/asyncomplete.vim"]
-	path = plus/.vim/bundle/asyncomplete.vim
-	url = https://github.com/prabirshrestha/asyncomplete.vim.git
-[submodule "plus/.vim/bundle/asyncomplete-lsp.vim"]
-	path = plus/.vim/bundle/asyncomplete-lsp.vim
-	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim.git
 [submodule "plus/.vim/bundle/coc.nvim"]
 	path = plus/.vim/bundle/coc.nvim
 	url = https://github.com/neoclide/coc.nvim.git
+[submodule "plus/.vim/bundle/typescript-vim"]
+	path = plus/.vim/bundle/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git

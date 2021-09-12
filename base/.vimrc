@@ -67,7 +67,6 @@ if has('autocmd')
   autocmd BufRead,BufNewFile *.bzl set filetype=python
   autocmd BufRead,BufNewFile BUILD set filetype=python
   autocmd BufRead,BufNewFile *.pyst set filetype=python
-  autocmd BufRead,BufNewFile *.pyst-include set filetype=python
 endif
 
 let g:tagbar_type_go = {
