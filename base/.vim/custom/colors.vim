@@ -51,6 +51,8 @@ highlight javaConstantName        ctermfg=LightRed
 " JavaScript
 highlight javaScriptStringS       ctermfg=Magenta
 highlight javaScriptStringD       ctermfg=Magenta
+highlight javaScriptStringT       ctermfg=Magenta
+highlight javaScriptEmbed         ctermfg=Gray
 highlight javaScriptRegexpString  ctermfg=Blue
 highlight javaScriptNumber        ctermfg=DarkMagenta
 highlight javaScriptIdentifier    ctermfg=DarkGreen
@@ -96,7 +98,7 @@ highlight goType                  ctermfg=DarkGreen
 highlight rustCommentLineDoc      ctermfg=DarkMagenta                     cterm=Reverse
 highlight rustEnumVariant         ctermfg=DarkCyan
 syn match rustFormatSpecifier /[{}]/ contained containedin=rustString
-highlight rustFormatSpecifier     ctermfg=DarkMagenta
+highlight rustFormatSpecifier     ctermfg=Gray
 highlight rustFuncCall            ctermfg=None
 highlight rustFuncName            ctermfg=None
 highlight rustIdentifier          ctermfg=None
