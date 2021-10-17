@@ -48,22 +48,32 @@ def __get_char(row, col):
 def __move(direction):
     (row, col) = vim.current.window.cursor
 
+def __col():
+    return int(vim.eval("virtcol('.')"))
+
 
 def box_drawing_move(direction):
     __cursor_add(direction)
-    # if direction == RIGHT and col == len(line)-1:
-    #     vim.command("normal i ")
-    # if direction == UP and row == 0:
-    #     vim.command("normal O")
     if direction == UP:
+        before_col = __col()
         vim.command("normal! k")
+        after_col = __col()
+        if after_col < before_col:
+            vim.command("normal! " + str(before_col - after_col) + "a ")
         __cursor_add(DOWN)
     elif direction == RIGHT:
+        before_col = vim.current.window.cursor[1]
         vim.command("normal! l")
-        #vim.current.window.cursor = (row, col+1)
+        after_col = vim.current.window.cursor[1]
+        if before_col == after_col:
+            vim.command("normal! a ")
         __cursor_add(LEFT)
     elif direction == DOWN:
+        before_col = __col()
         vim.command("normal! j")
+        after_col = __col()
+        if after_col < before_col:
+            vim.command("normal! " + str(before_col - after_col) + "a ")
         __cursor_add(UP)
     elif direction == LEFT:
         vim.command("normal! h")
