@@ -9,7 +9,7 @@ highlight TabLineMore             ctermfg=Black       ctermbg=Yellow      cterm=
 highlight LineNr                  ctermfg=DarkGray    ctermbg=Black
 highlight CursorLine                                  ctermbg=Black       cterm=None
 highlight CursorLineNr            ctermfg=White       ctermbg=Black
-highlight ColorColumn                                 ctermbg=DarkRed
+highlight ColorColumn                                 ctermbg=Black
 highlight NonText                 ctermfg=White       ctermbg=Black
 highlight SpecialKey              ctermfg=Black       ctermbg=None
 highlight SignColumn                                  ctermbg=Black       cterm=None
@@ -49,16 +49,17 @@ highlight javaObject              ctermfg=DarkBlue
 highlight javaConstantName        ctermfg=LightRed
 
 " JavaScript
-highlight javaScriptStringS       ctermfg=Magenta
-highlight javaScriptStringD       ctermfg=Magenta
-highlight javaScriptStringT       ctermfg=Magenta
-highlight javaScriptEmbed         ctermfg=Gray
-highlight javaScriptRegexpString  ctermfg=Blue
-highlight javaScriptNumber        ctermfg=DarkMagenta
-highlight javaScriptIdentifier    ctermfg=DarkGreen
-highlight javaScriptFunction      ctermfg=DarkGreen
 highlight javaScriptBraces        ctermfg=DarkGray
+highlight javaScriptEmbed         ctermfg=Gray
+highlight javaScriptFunction      ctermfg=DarkGreen
+highlight javaScriptIdentifier    ctermfg=DarkGreen
+highlight javaScriptNumber        ctermfg=DarkMagenta
 highlight javaScriptParens        ctermfg=DarkGray
+highlight javaScriptRegexpString  ctermfg=Blue
+highlight javaScriptSpecial       ctermfg=DarkMagenta
+highlight javaScriptStringD       ctermfg=Magenta
+highlight javaScriptStringS       ctermfg=Magenta
+highlight javaScriptStringT       ctermfg=Magenta
 " For JavaScript embedded in HTML script tags.
 highlight javaScript              ctermfg=None
 
@@ -67,10 +68,17 @@ highlight typescriptCastKeyword   ctermfg=Yellow
 highlight typescriptDocComment    ctermfg=DarkMagenta ctermbg=None       cterm=Reverse
 highlight typescriptExport        ctermfg=DarkYellow
 highlight typescriptImport        ctermfg=DarkYellow
+highlight typescriptNull          ctermfg=DarkMagenta
 highlight typescriptObjectLabel   ctermfg=LightBlue
+highlight typescriptOperator      ctermfg=DarkYellow
 highlight typescriptString        ctermfg=Magenta
+highlight typescriptStringD       ctermfg=Magenta
+highlight typescriptStringS       ctermfg=Magenta
+highlight typescriptStringB       ctermfg=Magenta
 highlight typescriptFuncType      ctermfg=None
+highlight typescriptInterpolationDelimiter ctermfg=DarkBlue
 highlight typescriptBOMHistoryProp ctermfg=None
+highlight typescriptGlobalObjects ctermfg=DarkGreen
 
 " JSON
 highlight jsonBraces              ctermfg=None
@@ -102,6 +110,7 @@ highlight rustFormatSpecifier     ctermfg=Gray
 highlight rustFuncCall            ctermfg=None
 highlight rustFuncName            ctermfg=None
 highlight rustIdentifier          ctermfg=None
+highlight rustLabel               ctermfg=DarkBlue
 highlight rustLifetime            ctermfg=Yellow
 highlight rustMacro               ctermfg=LightBlue
 highlight rustModPathSep          ctermfg=DarkGray
@@ -130,10 +139,12 @@ highlight markdownH1              ctermfg=White
 highlight markdownH1Delimiter     ctermfg=Gray
 highlight markdownH2              ctermfg=White
 highlight markdownH2Delimiter     ctermfg=Gray
+highlight markdownH3Delimiter     ctermfg=Gray
 highlight markdownCode            ctermfg=LightBlue
 highlight markdownCodeDelimiter   ctermfg=DarkBlue
 highlight markdownLinkText        ctermfg=LightCyan
 highlight markdownUrl             ctermfg=DarkCyan
+highlight markdownItalic          ctermfg=None                            cterm=Bold
 
 highlight DiffAdd                 ctermfg=White       ctermbg=DarkGreen   cterm=None
 highlight DiffDelete              ctermfg=White       ctermbg=DarkRed     cterm=None

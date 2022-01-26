@@ -32,7 +32,6 @@ if has('autocmd')
   au FileType make,snippet setlocal ts=8 sts=8 sw=8 noexpandtab
   au FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
   au FileType javascript,typescript setlocal ts=2 sts=2 sw=2 expandtab
-  au FileType markdown set wrap linebreak
 
   " Go to last viewed tab
   let g:lasttab = 1

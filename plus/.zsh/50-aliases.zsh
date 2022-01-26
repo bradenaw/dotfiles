@@ -1,5 +1,5 @@
 # Ubuntu needs --color=auto, OSX prints an error message every time
-if [[ "$(ls --color=auto > /dev/null 2>&1 && echo $?)" == "0" ]]; then
+if /bin/ls --color=auto > /dev/null 2>&1; then
     alias ls='ls -aGF --color=auto'
     alias ll='ls -lha --color=auto'
     alias grep='grep --color=auto'
