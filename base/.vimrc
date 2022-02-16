@@ -263,7 +263,7 @@ function! MakeLink()
     echo "File is not in a repo"
     return
   endif
-  let rev = substitute(system("cd ". repo_path . "&& git rev-parse master"), '\n\+$', '', '')
+  let rev = substitute(system("cd ". repo_path . "&& git rev-parse main"), '\n\+$', '', '')
   let link = "https://github.com/get-convex/" . repo . "/blob/" . rev . "/" . rel_path . "#L" . line_number
   call setreg("+", link)
   echo link . " copied to clipboard"
