@@ -66,6 +66,8 @@ highlight javaScript              ctermfg=None
 " TypeScript
 highlight typescriptCastKeyword   ctermfg=Yellow
 highlight typescriptDocComment    ctermfg=DarkMagenta ctermbg=None       cterm=Reverse
+highlight typescriptDocParam      ctermfg=White       ctermbg=DarkMagenta
+highlight typescriptDocTags       ctermfg=Magenta     ctermbg=DarkMagenta
 highlight typescriptExport        ctermfg=DarkYellow
 highlight typescriptImport        ctermfg=DarkYellow
 highlight typescriptNull          ctermfg=DarkMagenta
@@ -123,14 +125,20 @@ highlight rustStorage             ctermfg=LightBlue
 highlight rustString              ctermfg=LightMagenta
 
 " sh
-highlight shDoubleQuote           ctermfg=Magenta
-highlight shQuote                 ctermfg=Magenta
-highlight shTestDoubleQuote       ctermfg=Magenta
-highlight shFunctionKey           ctermfg=DarkGreen
-highlight shFunction              ctermfg=None
-highlight shVariable              ctermfg=DarkBlue
 highlight shDerefSimple           ctermfg=LightBlue
 highlight shDerefVar              ctermfg=LightBlue
+highlight shDoubleQuote           ctermfg=Magenta
+highlight shFunction              ctermfg=None
+highlight shFunctionKey           ctermfg=DarkGreen
+highlight shOption                ctermfg=DarkMagenta
+highlight shQuote                 ctermfg=Magenta
+highlight shTestDoubleQuote       ctermfg=Magenta
+highlight shVariable              ctermfg=DarkBlue
+
+" yaml
+highlight yamlFlowIndicator       ctermfg=DarkGray
+highlight yamlFlowString          ctermfg=LightMagenta
+highlight yamlKeyValueDelimiter   ctermfg=DarkGray
 
 " zsh
 highlight zshString               ctermfg=LightMagenta

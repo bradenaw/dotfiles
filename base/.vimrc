@@ -174,6 +174,7 @@ nmap <leader>mc /\(<<<<<<<\\|\|\|\|\|\|\|\|\\|=======\\|>>>>>>>\)<ENTER>
 
 nmap <leader>ch :call CocAction('doHover')<ENTER>
 nmap <leader>ca :CocAction<ENTER>
+nmap <leader>cf :call CocActionAsync('format')<ENTER>
 nmap gd <Plug>(coc-definition)
 
 " H and L navigate between tabs.
@@ -277,3 +278,4 @@ function! SynStack()
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
