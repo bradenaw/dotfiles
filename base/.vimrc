@@ -1,17 +1,6 @@
 " set the leader key to the comma
 let mapleader=','
 
-" Speed up CtrlP with ag
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
-    \ --ignore .git
-    \ --ignore .svn
-    \ --ignore .hg
-    \ --ignore .DS_Store
-    \ --ignore "**/*.pyc"
-    \ --ignore .git5_specs
-    \ --ignore review
-    \ -g ""'
-
 if has('autocmd')
   " turn filetype off per the pathogen instructions at
   " http://www.vim.org/scripts/script.php?script_id=2332
@@ -24,19 +13,10 @@ if has('autocmd')
   filetype plugin on
   set nowrap
 
-  " set filetypes for a given extension
-  au BufRead,BufNewFile *.R set ft=R
-  au BufRead,BufNewFile *.snippets set ft=snippet
-
   " local settings for specific filetypes
   au FileType make,snippet setlocal ts=8 sts=8 sw=8 noexpandtab
   au FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
   au FileType javascript,typescript setlocal ts=2 sts=2 sw=2 expandtab
-
-  " Go to last viewed tab
-  let g:lasttab = 1
-  nmap T :exe "tabn ".g:lasttab<CR>
-  au TabLeave * let g:lasttab = tabpagenr()
 
   let g:gitgutter_sign_added='++'
   let g:gitgutter_sign_modified='~~'
@@ -48,8 +28,6 @@ if has('autocmd')
   let g:SignatureMarkerTextHL="'SignatureMarkerText'"
 
   let g:indent_guides_auto_colors = 0
-  "let g:indent_guides_start_level = 2
-  "let g:indent_guides_guide_size = 1
 
   let g:go_fmt_fail_silently = 1
   let g:rustfmt_autosave = 1
@@ -68,34 +46,6 @@ if has('autocmd')
   autocmd BufRead,BufNewFile *.pyst set filetype=python
 endif
 
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
-
 " source custom functions
 source ~/.vim/custom/functions.vim
 
@@ -108,14 +58,8 @@ nmap <leader>i :set list!<cr>
 " toggle relative line numbering with ,r
 nmap <leader>r :set rnu!<cr>
 
-" toggle cursorline highlighting
-nmap <leader>c :set cursorline!<cr>
-
 " toggle spellcheck with ,s
 nmap <leader>s :set spell!<cr>
-
-" toggle previous buffer with ,,
-nmap <leader><leader> <c-^>
 
 " clear search highlighting
 nmap <return> :nohlsearch<cr>
@@ -131,15 +75,13 @@ noremap <leader>n :vs<CR><C-W>T
 " move current buffer to new tab
 noremap <leader>T <C-W>T
 
-" opens CtrlP in a new tab
-noremap <leader><C-P> :tabnew<CR>:CtrlP<CR>
-
 " show highlight group information
 map <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
     \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
     \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-nmap <leader>ggo :let g:gitgutter_diff_args='origin/master'<cr>:GitGutterSignsDisable<cr>:GitGutterSignsEnable<cr>
+" swap gitgutter diff from showing differences in current commit to differences against origin/main.
+nmap <leader>ggo :let g:gitgutter_diff_args='origin/master'<cr>:GitGutterSignsDisable<cr>:GitGutterignsEnable<cr>
 nmap <leader>ggc :let g:gitgutter_diff_args=''<cr>:GitGutterSignsDisable<cr>:GitGutterSignsEnable<cr>
 
 let g:grabbedbufnr=1
@@ -150,9 +92,10 @@ nmap <leader>by :let g:grabbedbufnr = bufnr('')<cr>
 " 'paste' buffer (open in current window)
 nmap <leader>bp :exe "buffer ".g:grabbedbufnr<cr>
 
-" \t opens new tab.
+" ,t opens new tab.
 nmap <leader>t :tabnew<CR>
 
+" box drawing tools
 source ~/.vim/custom/box_drawing.vim
 nmap <leader>bdg :normal i// hl ─   jk │   jl ┌   hj ┐   kl └   hk ┘   jkl ├   hjk ┤  hjl ┬   hkl ┴   hjkl ┼<ESC>
 nmap <leader>bdc :normal o// hl ─   jk │   jl ┌   hj ┐   kl └   hk ┘   jkl ├   hjk ┤  hjl ┬   hkl ┴   hjkl ┼<ENTER><ESC>20o//                                                                                                //<ESC>019k3l
@@ -170,12 +113,16 @@ nmap <leader>bdhkl :normal r┴<ESC>
 nmap <leader>bdhjkl :normal r┼<ESC>
 nmap <leader>bds :BoxDrawingStart<ENTER>
 
+" mc = 'merge conflict', search for merge markers
 nmap <leader>mc /\(<<<<<<<\\|\|\|\|\|\|\|\|\\|=======\\|>>>>>>>\)<ENTER>
 
 nmap <leader>ch :call CocAction('doHover')<ENTER>
 nmap <leader>ca :CocAction<ENTER>
 nmap <leader>cf :call CocActionAsync('format')<ENTER>
 nmap gd <Plug>(coc-definition)
+
+" tab accepts suggestions from coc
+inoremap <expr> <tab> (pumvisible() ? ("\<C-n>\<C-y>") : ("\<tab>"))
 
 " H and L navigate between tabs.
 nmap H :tabp<CR>
@@ -195,11 +142,6 @@ nmap k gk
 " Press * to search for highlighted text in visual mode.
 vnoremap * y/<c-r>"<cr>N
 nnoremap * *N
-
-nmap <leader>ll :LineLength 100<cr>
-nmap <leader>ls :LineLength 80<cr>
-
-inoremap <expr> <tab> (pumvisible() ? ("\<C-n>\<C-y>") : ("\<tab>"))
 
 " so typing comments doesn't has a dumb
 inoremap # X#
@@ -278,4 +220,3 @@ function! SynStack()
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
-

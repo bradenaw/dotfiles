@@ -6,6 +6,12 @@ RIGHT = '╶'
 DOWN = '╷'
 LEFT = '╴'
 
+#     ┌─────────╴display
+#     │     ┌───╴up?
+#     │     │┌──╴right?
+#     │     ││┌─╴down?
+#     │     │││┌╴left?
+#     │     ││││
 m = [
     (' ', 0b0000),
     ('╵', 0b1000),
@@ -41,7 +47,7 @@ def __cursor_add(c):
 def __get_cursor_char():
     (row, col) = vim.current.window.cursor
     return __get_char(row, col)
-    
+
 def __get_char(row, col):
     return vim.eval("matchstr(getline(" + str(row) + "), '\%" + str(col+1) + "c.')")
 
