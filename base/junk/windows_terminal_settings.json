@@ -1,4 +1,5 @@
 {
+    "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "actions": 
     [
@@ -37,13 +38,11 @@
         "list": 
         [
             {
-                "commandline": "powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
             },
             {
-                "commandline": "cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Command Prompt"
@@ -55,7 +54,6 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
-                "acrylicOpacity": 0.84999999999999998,
                 "bellStyle": "none",
                 "colorScheme": "bw",
                 "cursorShape": "filledBox",
@@ -67,6 +65,7 @@
                 "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
                 "hidden": false,
                 "name": "Ubuntu",
+                "opacity": 85,
                 "source": "Windows.Terminal.Wsl",
                 "useAcrylic": true
             }
@@ -259,6 +258,29 @@
             "yellow": "#C4A000"
         },
         {
+            "background": "#300A24",
+            "black": "#171421",
+            "blue": "#0037DA",
+            "brightBlack": "#767676",
+            "brightBlue": "#08458F",
+            "brightCyan": "#2C9FB3",
+            "brightGreen": "#26A269",
+            "brightPurple": "#A347BA",
+            "brightRed": "#C01C28",
+            "brightWhite": "#F2F2F2",
+            "brightYellow": "#A2734C",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#3A96DD",
+            "foreground": "#FFFFFF",
+            "green": "#26A269",
+            "name": "Ubuntu-ColorScheme",
+            "purple": "#881798",
+            "red": "#C21A23",
+            "selectionBackground": "#FFFFFF",
+            "white": "#CCCCCC",
+            "yellow": "#A2734C"
+        },
+        {
             "background": "#000000",
             "black": "#000000",
             "blue": "#000080",
@@ -293,15 +315,15 @@
             "brightRed": "#F18354",
             "brightWhite": "#FDF6E3",
             "brightYellow": "#ECBC2A",
-            "cursorColor": "#d33682",
+            "cursorColor": "#D33682",
             "cyan": "#62C7C0",
             "foreground": "#839496",
             "green": "#859900",
             "name": "bw",
             "purple": "#6C70C4",
-            "red": "#cb4c16",
+            "red": "#CB4C16",
             "selectionBackground": "#EEE8D5",
-            "white": "#EEE8D5",
+            "white": "#D6699E",
             "yellow": "#B58900"
         }
     ]
