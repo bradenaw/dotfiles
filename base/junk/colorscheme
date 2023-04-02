@@ -6,3 +6,11 @@ normal  |   073642  cb4c16  859900  b58900  268bd2  6c70c4  2aa198  eee8d5  8394
 bright  |   586e75  f18354  bcd31d  ecbc2a  60aadf  b1b4e8  62c7c0  fdf6e3  becbd2  d6699e
         +----------------------------------------------------------------------------------
 bg      |   002b36
+
+
+orange variant
+bg              d2ccbe
+black           242423
+black bright    696764
+text            8f8d8a
+text bright     d2ccbe
