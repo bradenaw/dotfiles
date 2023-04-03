@@ -153,7 +153,8 @@ highlight markdownCode            ctermfg=LightBlue
 highlight markdownCodeDelimiter   ctermfg=DarkBlue
 highlight markdownLinkText        ctermfg=LightCyan
 highlight markdownUrl             ctermfg=DarkCyan
-highlight markdownItalic          ctermfg=None                            cterm=Bold
+highlight markdownItalic          ctermfg=LightBlue
+highlight markdownBold            ctermfg=White
 
 highlight DiffAdd                 ctermfg=White       ctermbg=DarkGreen   cterm=None
 highlight DiffDelete              ctermfg=White       ctermbg=DarkRed     cterm=None
