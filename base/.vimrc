@@ -117,12 +117,26 @@ nmap <leader>bds :BoxDrawingStart<ENTER>
 nmap <leader>mc /\(<<<<<<<\\|\|\|\|\|\|\|\|\\|=======\\|>>>>>>>\)<ENTER>
 
 nmap <leader>ch :call CocAction('doHover')<ENTER>
-nmap <leader>ca :CocAction<ENTER>
+nmap <leader>ca <Plug>(coc-codeaction-cursor)
 nmap <leader>cf :call CocActionAsync('format')<ENTER>
-nmap gd <Plug>(coc-definition)
 
-" tab accepts suggestions from coc
-inoremap <expr> <tab> (pumvisible() ? ("\<C-n>\<C-y>") : ("\<tab>"))
+inoremap <silent><expr> <TAB>
+    \ coc#pum#visible() ? coc#pum#next(1) :
+    \ CheckBackspace() ? "\<Tab>" :
+    \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+function! CheckBackspace() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent><nowait> <leader>o  :<C-u>CocList outline<cr>
 
 " H and L navigate between tabs.
 nmap H :tabp<CR>
