@@ -116,6 +116,7 @@ nmap <leader>bds :BoxDrawingStart<ENTER>
 " mc = 'merge conflict', search for merge markers
 nmap <leader>mc /\(<<<<<<<\\|\|\|\|\|\|\|\|\\|=======\\|>>>>>>>\)<ENTER>
 
+let g:coc_disable_startup_warning = 1
 nmap <leader>ch :call CocAction('doHover')<ENTER>
 nmap <leader>ca <Plug>(coc-codeaction-cursor)
 nmap <leader>cf :call CocActionAsync('format')<ENTER>
