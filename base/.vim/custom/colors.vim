@@ -105,7 +105,7 @@ highlight goBuiltins              ctermfg=LightBlue
 highlight goType                  ctermfg=DarkGreen
 
 " Rust
-highlight rustCommentLineDoc      ctermfg=DarkMagenta                     cterm=Reverse
+highlight rustCommentLineDoc      ctermfg=Gray        ctermbg=Black       cterm=Reverse
 highlight rustEnumVariant         ctermfg=DarkCyan
 highlight rustEscape              ctermfg=DarkMagenta
 syn match rustFormatSpecifier /[{}]/ contained containedin=rustString
