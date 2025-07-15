@@ -29,7 +29,7 @@ highlight PreProc                 ctermfg=DarkGray
 highlight Constant                ctermfg=DarkMagenta
 highlight Comment                 ctermfg=DarkCyan                        cterm=Reverse
 highlight Operator                ctermfg=DarkGray
-highlight Statement               ctermfg=Brown
+highlight Statement               ctermfg=DarkYellow
 highlight Type                    ctermfg=DarkGreen
 highlight Pmenu                   ctermfg=None        ctermbg=Black       cterm=None
 
@@ -105,21 +105,21 @@ highlight goBuiltins              ctermfg=LightBlue
 highlight goType                  ctermfg=DarkGreen
 
 " Rust
-highlight rustCommentLineDoc      ctermfg=Gray        ctermbg=Black       cterm=Reverse
+highlight rustCommentLineDoc      ctermfg=LightGray      ctermbg=Black       cterm=Reverse
 highlight rustEnumVariant         ctermfg=DarkCyan
 highlight rustEscape              ctermfg=DarkMagenta
-syn match rustFormatSpecifier /[{}]/ contained containedin=rustString
+syn match rustFormatSpecifier /{.\{-}}/ contained containedin=rustString
 highlight rustFormatSpecifier     ctermfg=DarkBlue
 highlight rustFuncCall            ctermfg=None
 highlight rustFuncName            ctermfg=None
 highlight rustIdentifier          ctermfg=None
 highlight rustLabel               ctermfg=DarkBlue
 highlight rustLifetime            ctermfg=Yellow
-highlight rustMacro               ctermfg=LightBlue
+highlight rustMacro               ctermfg=DarkBlue
 highlight rustModPathSep          ctermfg=DarkGray
 highlight rustPubScopeDelim       ctermfg=DarkGray
 highlight rustQuestionMark        ctermfg=Red                             cterm=None
-highlight rustSelf                ctermfg=Gray
+highlight rustSelf                ctermfg=LightGray
 highlight rustSigil               ctermfg=LightBlue
 highlight rustStorage             ctermfg=LightBlue
 highlight rustString              ctermfg=LightMagenta

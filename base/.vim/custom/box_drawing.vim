@@ -49,7 +49,7 @@ def __get_cursor_char():
     return __get_char(row, col)
 
 def __get_char(row, col):
-    return vim.eval("matchstr(getline(" + str(row) + "), '\%" + str(col+1) + "c.')")
+    return vim.eval("matchstr(getline(" + str(row) + "), '\\%" + str(col+1) + "c.')")
 
 def __move(direction):
     (row, col) = vim.current.window.cursor
