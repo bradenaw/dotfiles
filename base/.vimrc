@@ -99,6 +99,10 @@ nmap <leader>t :tabnew<CR>
 source ~/.vim/custom/box_drawing.vim
 nmap <leader>bdg :normal i// hl ─   jk │   jl ┌   hj ┐   kl └   hk ┘   jkl ├   hjk ┤  hjl ┬   hkl ┴   hjkl ┼<ESC>
 nmap <leader>bdc :normal o// hl ─   jk │   jl ┌   hj ┐   kl └   hk ┘   jkl ├   hjk ┤  hjl ┬   hkl ┴   hjkl ┼<ENTER><ESC>20o//                                                                                                //<ESC>019k3l
+nmap <leader>bdh :normal r╴<ESC>
+nmap <leader>bdj :normal r╷<ESC>
+nmap <leader>bdk :normal r╵<ESC>
+nmap <leader>bdl :normal r╶<ESC>
 nmap <leader>bdhl :normal r─<ESC>
 nmap <leader>bdjk :normal r│<ESC>
 nmap <leader>bdjl :normal r┌<ESC>
