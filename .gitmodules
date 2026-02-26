@@ -16,9 +16,6 @@
 [submodule "plus/.vim/bundle/rust.vim"]
 	path = plus/.vim/bundle/rust.vim
 	url = https://github.com/rust-lang/rust.vim.git
-[submodule "plus/.vim/bundle/coc.nvim"]
-	path = plus/.vim/bundle/coc.nvim
-	url = https://github.com/neoclide/coc.nvim.git
 [submodule "plus/.vim/bundle/typescript-vim"]
 	path = plus/.vim/bundle/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git

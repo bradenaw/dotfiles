@@ -61,9 +61,6 @@ nmap <leader>r :set rnu!<cr>
 " toggle spellcheck with ,s
 nmap <leader>s :set spell!<cr>
 
-" clear search highlighting
-nmap <return> :nohlsearch<cr>
-
 " open files in the same directory as the current file
 cnoremap %% <c-r>=expand('%:h').'/'<cr>
 map <leader>e :edit %%
@@ -119,29 +116,6 @@ nmap <leader>bds :BoxDrawingStart<ENTER>
 
 " mc = 'merge conflict', search for merge markers
 nmap <leader>mc /\(<<<<<<<\\|\|\|\|\|\|\|\|\\|=======\\|>>>>>>>\)<ENTER>
-
-let g:coc_disable_startup_warning = 1
-nmap <leader>ch :call CocAction('doHover')<ENTER>
-nmap <leader>ca <Plug>(coc-codeaction-cursor)
-nmap <leader>cf :call CocActionAsync('format')<ENTER>
-
-inoremap <silent><expr> <TAB>
-    \ coc#pum#visible() ? coc#pum#next(1) :
-    \ CheckBackspace() ? "\<Tab>" :
-    \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-function! CheckBackspace() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" GoTo code navigation
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nnoremap <silent><nowait> <leader>o  :<C-u>CocList outline<cr>
 
 " H and L navigate between tabs.
 nmap H :tabp<CR>

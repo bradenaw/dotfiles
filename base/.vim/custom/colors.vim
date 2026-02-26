@@ -32,6 +32,7 @@ highlight Operator                ctermfg=DarkGray
 highlight Statement               ctermfg=DarkYellow
 highlight Type                    ctermfg=DarkGreen
 highlight Pmenu                   ctermfg=None        ctermbg=Black       cterm=None
+highlight Todo                    ctermfg=Yellow
 
 " Java
 highlight javaCommentTitle        ctermfg=DarkBlue    ctermbg=None        cterm=Reverse
@@ -123,6 +124,15 @@ highlight rustSelf                ctermfg=LightGray
 highlight rustSigil               ctermfg=LightBlue
 highlight rustStorage             ctermfg=LightBlue
 highlight rustString              ctermfg=LightMagenta
+
+highlight @lsp.type.method.rust         ctermfg=None
+highlight @lsp.type.function.rust       ctermfg=None
+highlight @lsp.type.enumMember.rust     ctermfg=DarkCyan
+highlight @lsp.type.namespace.rust      ctermfg=DarkGray
+highlight @lsp.type.string.rust         ctermfg=LightMagenta
+highlight @lsp.type.macro.rust          ctermfg=DarkBlue
+highlight @lsp.mod.documentation.rust   ctermfg=LightGray      ctermbg=Black       cterm=Reverse
+highlight @lsp.type.keyword.rust        ctermfg=DarkYellow
 
 " sh
 highlight shDerefSimple           ctermfg=LightBlue
