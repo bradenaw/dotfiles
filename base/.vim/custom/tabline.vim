@@ -151,6 +151,9 @@ function! Tabline()
     let buftitles = []
     for j in range(len(buflist))
       let bufnr = buflist[j]
+      if getbufvar(bufnr, '&buftype') != ''
+        continue
+      endif
       let bufname = bufname(buflist[j])
       let longbufname = fnamemodify(bufname, ':p')
       let buftitle = ''

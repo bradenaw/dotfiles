@@ -16,6 +16,7 @@ if has('autocmd')
   " local settings for specific filetypes
   au FileType make,snippet setlocal ts=8 sts=8 sw=8 noexpandtab
   au FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
+  au FileType proto setlocal ts=4 sts=4 sw=4 expandtab
   au FileType javascript,typescript setlocal ts=2 sts=2 sw=2 expandtab
 
   let g:gitgutter_sign_added='++'
