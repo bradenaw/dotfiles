@@ -2,15 +2,6 @@
 let mapleader=','
 
 if has('autocmd')
-  " turn filetype off per the pathogen instructions at
-  " http://www.vim.org/scripts/script.php?script_id=2332
-  filetype off
-
-  call pathogen#runtime_append_all_bundles()
-
-  " turn filetype back on after calling pathogen
-  filetype on
-  filetype plugin on
   set nowrap
 
   " local settings for specific filetypes
@@ -18,15 +9,6 @@ if has('autocmd')
   au FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
   au FileType proto setlocal ts=4 sts=4 sw=4 expandtab
   au FileType javascript,typescript setlocal ts=2 sts=2 sw=2 expandtab
-
-  let g:gitgutter_sign_added='++'
-  let g:gitgutter_sign_modified='~~'
-  let g:gitgutter_sign_removed='__'
-  let g:gitgutter_sign_removed_first_line='‾‾'
-  let g:gitgutter_sign_modified_removed='__'
-
-  let g:SignatureMarkTextHL="'SignatureMarkText'"
-  let g:SignatureMarkerTextHL="'SignatureMarkerText'"
 
   let g:indent_guides_auto_colors = 0
 
@@ -83,10 +65,6 @@ noremap <leader>T <C-W>T
 map <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
     \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
     \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
-" swap gitgutter diff from showing differences in current commit to differences against origin/main.
-nmap <leader>ggo :let g:gitgutter_diff_args='origin/master'<cr>:GitGutterSignsDisable<cr>:GitGutterignsEnable<cr>
-nmap <leader>ggc :let g:gitgutter_diff_args=''<cr>:GitGutterSignsDisable<cr>:GitGutterSignsEnable<cr>
 
 let g:grabbedbufnr=1
 " 'yank' current buffer (save number)
