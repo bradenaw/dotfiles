@@ -4,6 +4,8 @@ export ZSH=$HOME/.oh-my-zsh
 # Would you like to use another custom folder than $ZSH/custom?
 export ZSH_CUSTOM=$HOME/.zsh
 
+compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -59,6 +61,8 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 
+export EDITOR="nvim"
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -104,4 +108,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
 export PATH="$HOME/.local/bin:$PATH"

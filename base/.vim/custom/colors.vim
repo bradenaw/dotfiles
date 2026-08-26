@@ -21,6 +21,8 @@ highlight SignatureMarkText       ctermfg=White       ctermbg=DarkBlue
 highlight SignatureMarkerText     ctermfg=White       ctermbg=DarkBlue
 highlight Search                  ctermfg=Black       ctermbg=Yellow
 highlight Identifier              ctermfg=None                            cterm=None
+highlight String                  ctermfg=Magenta
+highlight Special                 ctermfg=DarkYellow
 
 highlight IndentGuidesOdd                             ctermbg=None
 highlight IndentGuidesEven                            ctermbg=Black
@@ -145,6 +147,7 @@ highlight scalaInterpolationBrackets ctermfg=DarkMagenta
 highlight scalaKeywordModifier    ctermfg=Yellow
 highlight scalaNameDefinition     ctermfg=None
 highlight scalaParameterAnnotation ctermfg=DarkCyan ctermbg=LightCyan cterm=Reverse
+highlight scalaParamAnnotationValue ctermfg=DarkCyan ctermbg=White cterm=Reverse
 highlight scalaSquareBracketsBrackets ctermfg=None
 highlight scalaString             ctermfg=LightMagenta
 
@@ -174,6 +177,7 @@ highlight markdownH2              ctermfg=White
 highlight markdownH2Delimiter     ctermfg=Gray
 highlight markdownH3Delimiter     ctermfg=Gray
 highlight markdownCode            ctermfg=LightBlue
+highlight markdownCodeBlock       ctermfg=LightBlue
 highlight markdownCodeDelimiter   ctermfg=DarkBlue
 highlight markdownLinkText        ctermfg=LightCyan
 highlight markdownUrl             ctermfg=DarkCyan
@@ -193,6 +197,7 @@ highlight StatusLine              ctermfg=White       ctermbg=DarkYellow  cterm=
 highlight StatusLineFaded         ctermfg=Yellow      ctermbg=DarkYellow  cterm=None
 highlight StatusLineNC            ctermfg=White       ctermbg=DarkGray    cterm=None
 highlight StatusLineNCFaded       ctermfg=None        ctermbg=DarkGray    cterm=None
+highlight StatusLineLspStatus     ctermfg=White       ctermbg=DarkBlue    cterm=None
 highlight StatusLinePosition      ctermfg=White       ctermbg=DarkGray    cterm=None
 highlight StatusLinePositionFaded ctermfg=None        ctermbg=DarkGray    cterm=None
 highlight VertSplit               ctermfg=DarkGray    ctermbg=DarkGray    cterm=None

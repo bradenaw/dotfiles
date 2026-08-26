@@ -60,22 +60,36 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-local rt = require("rust-tools")
-rt.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      -- Hover actions
-      vim.keymap.set("n", "<leader>cha", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<leader>ca", rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
-  },
-  tools = {
-    inlay_hints = {
-      auto = false,
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.INFO] = "",
+      [vim.diagnostic.severity.HINT] = "",
     },
   },
 })
+
+vim.lsp.config("rust_analyzer", {
+  settings = {
+    ["rust-analyzer"] = {
+      diagnostics = {
+        enable = true,
+      },
+      check = {
+        -- Checking for the whole workspace can be really slow. Disabling just does it for the
+        -- current crate.
+        workspace = false,
+      },
+      cachePriming = {
+        -- Does a bunch of work on first load to index everything.
+        enable = false,
+      },
+    },
+  },
+})
+vim.lsp.enable("rust_analyzer")
 
 vim.keymap.set("n", "K", function()
   vim.lsp.buf.hover({

@@ -7,4 +7,3 @@ export SCREENDIR="$HOME/.screen/"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 export PATH="$HOME/bin:$PATH:/usr/lib/go-1.12/bin"
-export AWS_PROFILE="Engineers-715951115348"

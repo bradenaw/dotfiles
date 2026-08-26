@@ -49,6 +49,10 @@ endif
 
 set notermguicolors
 
+" Disable mouse since it breaks the native terminal interaction with the clipboard, particularly
+" annoying over ssh.
+set mouse=
+
 " source custom functions
 source ~/.vim/custom/functions.vim
 
@@ -181,31 +185,61 @@ source ~/.vim/custom/statusline.vim
 source ~/.vim/custom/colors.vim
 
 function! MakeLink()
-  let line_number = line('.')
-  let full_path = expand('%:p')
-
-  let rel_path = ""
-  let repo_path = ""
-  let repo = ""
-
-  if full_path =~ "^/Users/bw/src/convex/"
-    let rel_path = substitute(full_path, "^/Users/bw/src/convex/", "", "")
-    let repo_path = "/Users/bw/src/convex"
-    let repo = "convex"
-  elseif full_path =~ "^/Users/bw/src/public/golang/"
-    let rel_path = substitute(full_path, "^/Users/bw/src/public/golang/", "", "")
-    let link = "https://godoc.pp.dropbox.com/" . rel_path . "#L" . line_number
-    call setreg("+", link)
-    echo link . " copied to clipboard"
-    return
-  else
-    echo "File is not in a repo"
-    return
+  if !has("lua")
+    throw "Lua not supported"
   endif
-  let rev = substitute(system("cd ". repo_path . "&& git rev-parse main"), '\n\+$', '', '')
-  let link = "https://github.com/get-convex/" . repo . "/blob/" . rev . "/" . rel_path . "#L" . line_number
-  call setreg("+", link)
-  echo link . " copied to clipboard"
+  lua << EOF
+    local function has_prefix(str, pfx)
+      return str:sub(1, #pfx) == pfx
+    end
+    local function trim_prefix(str, pfx)
+      if has_prefix(str, pfx) then
+        return str:sub(#pfx + 1)
+      end
+      return str
+    end
+    local function trim(s)
+      return s:match("^%s*(.-)%s*$")
+    end
+    local function output(cmd)
+      local completion = vim.system(cmd):wait()
+      if completion.code ~= 0 then
+        error("command exited with code " .. completion.code .. ": " .. table.concat(cmd, " "))
+      end
+      return trim(completion.stdout)
+    end
+
+    local current_buf_cursor = vim.api.nvim_win_get_cursor(0)
+    local line_number = current_buf_cursor[1]
+    local full_path = vim.uv.fs_realpath(vim.api.nvim_buf_get_name(0))
+    local dir = vim.fs.dirname(full_path)
+    local repo_path = output({ "git", "-C", dir, "rev-parse", "--show-toplevel" })
+    local remote_url = output({ "git", "-C", dir, "remote", "get-url", "origin" })
+    local main_branches = output({ "git", "-C", dir, "branch", "--list", "main", "master" })
+    local main_branch = trim_prefix(main_branches, "* ")
+    -- @{u} is shorthand for the upstream tracking branch.
+    local rev = output({ "git", "-C", dir, "rev-parse", "@{u}" })
+
+    local rel_path = trim_prefix(full_path, repo_path .. "/")
+    -- \v for "very magic", i.e. PCRE
+    local github_url_pattern = "\\v(git\\@github\\.com:|https://github\\.com/)([^/]*)/([^.]+)\\.git"
+    local matches = vim.fn.matchlist(remote_url, github_url_pattern)
+    local user = matches[3]
+    local repo = matches[4]
+
+    local link = "https://github.com/" ..
+        user ..
+        "/" ..
+        repo ..
+        "/blob/" ..
+        rev ..
+        "/" ..
+        rel_path ..
+        "#L" ..
+        line_number
+    vim.fn.setreg("+", link)
+    print(link .. " copied to clipboard")
+EOF
 endfunction
 command! MakeLink call MakeLink()
 

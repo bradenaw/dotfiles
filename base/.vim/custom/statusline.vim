@@ -35,7 +35,14 @@ function! Status(i)
   end
   let s .= ' %m%r%h%w '
   if winnr() == a:i
-    let s .= '%=%#StatusLinePositionFaded# #%#StatusLinePosition#%n  '
+    if has("lua")
+      let lsp_status = v:lua.require('lsp-progress').progress()
+      if lsp_status != ''
+        let s .= '%#StatusLineLspStatus# ' . lsp_status . ' '
+      end
+    endif
+    let s .= '%='
+    let s .= '%#StatusLinePositionFaded# #%#StatusLinePosition#%n  '
     let s .= '%#StatusLinePositionFaded#col %#StatusLinePosition#%v  '
     let s .= '%#StatusLinePositionFaded#line %#StatusLinePosition#%l %#StatusLinePositionFaded#/ %#StatusLinePosition#%L '
   end
@@ -51,6 +58,7 @@ endfunction
 augroup status
   autocmd!
   autocmd VimEnter,WinEnter,BufWinEnter,InsertEnter,InsertLeave * call <SID>RefreshStatus()
+  autocmd User LspProgressStatusUpdated call <SID>RefreshStatus()
 augroup END
 
 " show the status line
