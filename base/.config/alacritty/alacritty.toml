@@ -1,0 +1,43 @@
+[window]
+padding = { x = 6, y = 6 }
+decorations = "Buttonless"
+opacity = 0.85
+blur = true
+startup_mode = "Maximized"
+
+[font]
+size = 10
+normal = { family = "FiraCode Nerd Font Mono", style = "Regular" }
+bold = { family = "FiraCode Nerd Font Mono", style = "Regular" }
+offset = { x = 1, y = 2 }
+glyph_offset = { x = 0, y = -1 }
+builtin_box_drawing = false
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.primary]
+foreground = "#8f8d8a"
+background = "#171716"
+dim_foreground = "#d2ccbe"
+bright_foreground = "#d2ccbe"
+
+[colors.normal]
+black = "#242423"
+red = "#cb4c16"
+green = "#859900"
+yellow = "#b58900"
+blue = "#268bd2"
+magenta = "#6c70c4"
+cyan = "#2aa198"
+white = "#d33682"
+
+[colors.bright]
+black = "#696764"
+red = "#f18354"
+green = "#bcd31d"
+yellow = "#ecbc2a"
+blue = "#60aadf"
+magenta = "#b1b4e8"
+cyan = "#62c7c0"
+white = "#fdf6e3"
