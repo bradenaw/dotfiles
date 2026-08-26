@@ -35,7 +35,7 @@ function! Status(i)
   end
   let s .= ' %m%r%h%w '
   if winnr() == a:i
-    if has("lua")
+    if has("nvim")
       let lsp_status = v:lua.require('lsp-progress').progress()
       if lsp_status != ''
         let s .= '%#StatusLineLspStatus# ' . lsp_status . ' '

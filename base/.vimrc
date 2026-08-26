@@ -185,7 +185,7 @@ source ~/.vim/custom/statusline.vim
 source ~/.vim/custom/colors.vim
 
 function! MakeLink()
-  if !has("lua")
+  if !has("nvim")
     throw "Lua not supported"
   endif
   lua << EOF
