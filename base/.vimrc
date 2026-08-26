@@ -22,12 +22,6 @@ if has('autocmd')
   autocmd BufRead,BufNewFile *.pyst set filetype=python
 endif
 
-set notermguicolors
-
-" Disable mouse since it breaks the native terminal interaction with the clipboard, particularly
-" annoying over ssh.
-set mouse=
-
 " source custom functions
 source ~/.vim/custom/functions.vim
 
@@ -109,9 +103,6 @@ nnoremap * *N
 inoremap # X#
 
 
-" Only use the 16 ANSI colors, rather than 256.
-set t_Co=16
-
 set cursorline
 " Put swapfiles in a separate directory.
 set dir=~/tmp/swp//
@@ -122,6 +113,10 @@ set foldlevel=100
 set formatoptions=tcqlro textwidth=100
 " Searches ignore case, unless there's a capital letter present.
 set ignorecase smartcase
+" Disable mouse since it breaks the native terminal interaction with the clipboard, particularly
+" annoying over ssh.
+set mouse=
+set notermguicolors
 set nowrap
 set number
 " Scroll the window before the cursor line goes off the screen.
@@ -132,7 +127,6 @@ set splitbelow
 set splitright
 set wildignore+=*.class
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-
 
 source ~/.vim/custom/tabline.vim
 source ~/.vim/custom/statusline.vim
