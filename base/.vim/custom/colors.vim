@@ -87,9 +87,11 @@ highlight typescriptGlobalObjects ctermfg=DarkGreen
 highlight jsonBraces              ctermfg=None
 
 " Python
-highlight pythonString            ctermfg=Magenta
 highlight pythonBuiltin           ctermfg=DarkMagenta
 highlight pythonFunction          ctermfg=DarkGreen
+highlight pythonQuotes      ctermfg=DarkMagenta
+highlight pythonString            ctermfg=Magenta
+highlight pythonTripleQuotes      ctermfg=DarkMagenta
 
 " HTML
 highlight htmlTag                 ctermfg=DarkGray
@@ -133,6 +135,18 @@ highlight @lsp.type.string.rust         ctermfg=LightMagenta
 highlight @lsp.type.macro.rust          ctermfg=DarkBlue
 highlight @lsp.mod.documentation.rust   ctermfg=LightGray      ctermbg=Black       cterm=Reverse
 highlight @lsp.type.keyword.rust        ctermfg=DarkYellow
+
+" Scala
+highlight scalaCapitalWord        ctermfg=DarkCyan
+highlight scalaDocLinks           ctermfg=DarkCyan ctermbg=LightCyan cterm=Reverse
+highlight scalaIString            ctermfg=LightMagenta
+highlight scalaInterpolationBoundary ctermfg=DarkBlue
+highlight scalaInterpolationBrackets ctermfg=DarkMagenta
+highlight scalaKeywordModifier    ctermfg=Yellow
+highlight scalaNameDefinition     ctermfg=None
+highlight scalaParameterAnnotation ctermfg=DarkCyan ctermbg=LightCyan cterm=Reverse
+highlight scalaSquareBracketsBrackets ctermfg=None
+highlight scalaString             ctermfg=LightMagenta
 
 " sh
 highlight shDerefSimple           ctermfg=LightBlue
