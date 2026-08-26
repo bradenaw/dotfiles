@@ -23,6 +23,7 @@ highlight Search                  ctermfg=Black       ctermbg=Yellow
 highlight Identifier              ctermfg=None                            cterm=None
 highlight String                  ctermfg=Magenta
 highlight Special                 ctermfg=DarkYellow
+highlight Whitespace              ctermfg=Black
 
 highlight IndentGuidesOdd                             ctermbg=None
 highlight IndentGuidesEven                            ctermbg=Black

@@ -16,6 +16,7 @@ require("lazy").setup({
 
 require("lsp")
 require("keymap")
+require("cmd")
 
 vim.diagnostic.config({
   signs = {
