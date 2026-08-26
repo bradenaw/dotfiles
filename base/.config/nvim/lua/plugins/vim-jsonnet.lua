@@ -1,4 +1,4 @@
 return {
-    'google/vim-jsonnet',
-    ft = 'jsonnet',
+	"google/vim-jsonnet",
+	ft = "jsonnet",
 }
