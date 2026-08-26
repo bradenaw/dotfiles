@@ -47,6 +47,8 @@ if has('autocmd')
   autocmd BufRead,BufNewFile *.pyst set filetype=python
 endif
 
+set notermguicolors
+
 " source custom functions
 source ~/.vim/custom/functions.vim
 
