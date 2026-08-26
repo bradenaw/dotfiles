@@ -2,18 +2,11 @@
 let mapleader=','
 
 if has('autocmd')
-  set nowrap
-
   " local settings for specific filetypes
   au FileType make,snippet setlocal ts=8 sts=8 sw=8 noexpandtab
   au FileType go setlocal ts=4 sts=4 sw=4 noexpandtab
   au FileType proto setlocal ts=4 sts=4 sw=4 expandtab
   au FileType javascript,typescript setlocal ts=2 sts=2 sw=2 expandtab
-
-  let g:indent_guides_auto_colors = 0
-
-  let g:go_fmt_fail_silently = 1
-  let g:rustfmt_autosave = 1
 
   augroup BgHighlight
     autocmd!
@@ -40,15 +33,6 @@ source ~/.vim/custom/functions.vim
 
 " map ,w to StripTrailingWhitespaces()
 nnoremap <silent> <leader>w :call StripTrailingWhitespaces()<cr>
-
-" toggle invisibles with ,i
-nmap <leader>i :set list!<cr>
-
-" toggle relative line numbering with ,r
-nmap <leader>r :set rnu!<cr>
-
-" toggle spellcheck with ,s
-nmap <leader>s :set spell!<cr>
 
 " open files in the same directory as the current file
 cnoremap %% <c-r>=expand('%:h').'/'<cr>
@@ -124,39 +108,31 @@ nnoremap * *N
 " so typing comments doesn't has a dumb
 inoremap # X#
 
-" don't autofold, but still allow manual folding
-set foldlevel=100
 
+" Only use the 16 ANSI colors, rather than 256.
 set t_Co=16
+
 set cursorline
-set autoindent
-set smartindent
-set hidden
-set hlsearch
-set list
-set number
-set ruler
-set smarttab
-set showcmd
-set wildmenu
-set ignorecase
-set smartcase
-set scrolloff=5
-set backspace=indent,eol,start " backspace over everything
-set splitbelow
-set splitright
-set updatetime=1200
-set nowrap
-set textwidth=100
-set wildignore+=*.class
-set formatoptions=tcqlro
 " Put swapfiles in a separate directory.
 set dir=~/tmp/swp//
-set listchars=tab:▸\ ,nbsp:?,conceal:?,precedes:←,extends:→
-set sts=4 ts=4 sw=4 expandtab
+" Show invisible characters as visible.
+set list listchars=tab:▸\ ,nbsp:?,conceal:?,precedes:←,extends:→
+" Don't autofold, but still allow manual folding.
+set foldlevel=100
+set formatoptions=tcqlro textwidth=100
+" Searches ignore case, unless there's a capital letter present.
+set ignorecase smartcase
+set nowrap
+set number
+" Scroll the window before the cursor line goes off the screen.
+set scrolloff=10
+" Pick indentation when adding a line.
+set smartindent
+set splitbelow
+set splitright
+set wildignore+=*.class
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
-syntax enable
-syntax on
 
 source ~/.vim/custom/tabline.vim
 source ~/.vim/custom/statusline.vim
