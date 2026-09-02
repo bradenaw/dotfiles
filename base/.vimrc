@@ -55,8 +55,6 @@ nmap <leader>bp :exe "buffer ".g:grabbedbufnr<cr>
 " ,t opens new tab.
 nmap <leader>t :tabnew<CR>
 
-" box drawing tools
-source ~/.vim/custom/box_drawing.vim
 nmap <leader>bdg :normal i// hl ─   jk │   jl ┌   hj ┐   kl └   hk ┘   jkl ├   hjk ┤  hjl ┬   hkl ┴   hjkl ┼<ESC>
 nmap <leader>bdc :normal o// hl ─   jk │   jl ┌   hj ┐   kl └   hk ┘   jkl ├   hjk ┤  hjl ┬   hkl ┴   hjkl ┼<ENTER><ESC>20o//                                                                                                //<ESC>019k3l
 nmap <leader>bdh :normal r╴<ESC>
@@ -75,7 +73,6 @@ nmap <leader>bdhjk :normal r┤<ESC>
 nmap <leader>bdhjl :normal r┬<ESC>
 nmap <leader>bdhkl :normal r┴<ESC>
 nmap <leader>bdhjkl :normal r┼<ESC>
-nmap <leader>bds :BoxDrawingStart<ENTER>
 
 " mc = 'merge conflict', search for merge markers
 nmap <leader>mc /\(<<<<<<<\\|\|\|\|\|\|\|\|\\|=======\\|>>>>>>>\)<ENTER>
